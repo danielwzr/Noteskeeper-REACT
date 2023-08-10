@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Note from "./components/Note"
+import Note from "./components/Note";
 
-function app(){
-    return <div><Header /> <Note classname="note"/> <Footer /></div>;
+function App() {
+  const [notas, setNotas] = useState([]);
+  return (
+    <div>
+      <Header notas={notas} setNotas={setNotas} />
+      {
+      notas.map((nota, index) => {
+        return <Note classname="note" title={nota.title} description={nota.description} key={index} />
+      })
+      }
+
+      
+      <Footer />
+    </div>
+  );
 }
 
-export default app;
+export default App;
